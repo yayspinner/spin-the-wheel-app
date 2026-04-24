@@ -1,0 +1,156 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* YaySpinner Design System
+   Playful, vibrant, joyful. All colors HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 40 100% 98%;
+    --foreground: 270 30% 18%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 270 30% 18%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 270 30% 18%;
+
+    /* Brand */
+    --primary: 285 85% 58%;            /* vivid purple-pink */
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 320 95% 70%;
+
+    --secondary: 35 100% 65%;          /* sunny orange */
+    --secondary-foreground: 270 40% 15%;
+
+    --muted: 280 30% 95%;
+    --muted-foreground: 270 15% 45%;
+
+    --accent: 175 75% 55%;             /* turquoise */
+    --accent-foreground: 270 40% 15%;
+
+    --destructive: 0 85% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 280 30% 90%;
+    --input: 280 30% 92%;
+    --ring: 285 85% 58%;
+
+    --radius: 1.25rem;
+
+    /* Wheel segment palette */
+    --wheel-1: 350 90% 62%;
+    --wheel-2: 25 95% 60%;
+    --wheel-3: 45 100% 60%;
+    --wheel-4: 145 65% 50%;
+    --wheel-5: 190 85% 55%;
+    --wheel-6: 220 85% 62%;
+    --wheel-7: 270 75% 62%;
+    --wheel-8: 320 85% 65%;
+
+    /* Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(285 90% 65%) 0%, hsl(320 95% 70%) 50%, hsl(35 100% 65%) 100%);
+    --gradient-brand: linear-gradient(135deg, hsl(285 85% 58%), hsl(320 95% 70%));
+    --gradient-sun: linear-gradient(135deg, hsl(25 95% 60%), hsl(45 100% 60%));
+    --gradient-sky: linear-gradient(135deg, hsl(190 85% 55%), hsl(220 85% 62%));
+    --gradient-soft: linear-gradient(180deg, hsl(40 100% 98%) 0%, hsl(285 70% 96%) 100%);
+
+    /* Shadows */
+    --shadow-pop: 0 20px 50px -12px hsl(285 85% 58% / 0.35);
+    --shadow-glow: 0 0 60px hsl(320 95% 70% / 0.45);
+    --shadow-card: 0 10px 30px -10px hsl(270 40% 30% / 0.18);
+    --shadow-button: 0 8px 0 0 hsl(285 70% 38%);
+    --shadow-button-secondary: 0 8px 0 0 hsl(25 80% 40%);
+
+    /* Motion */
+    --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+    --ease-spin: cubic-bezier(0.17, 0.67, 0.15, 1);
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 270 40% 8%;
+    --foreground: 40 100% 96%;
+    --card: 270 35% 12%;
+    --card-foreground: 40 100% 96%;
+    --popover: 270 35% 12%;
+    --popover-foreground: 40 100% 96%;
+    --primary: 320 95% 70%;
+    --primary-foreground: 270 40% 10%;
+    --secondary: 35 100% 65%;
+    --secondary-foreground: 270 40% 10%;
+    --muted: 270 30% 18%;
+    --muted-foreground: 270 15% 70%;
+    --accent: 175 75% 55%;
+    --accent-foreground: 270 40% 10%;
+    --destructive: 0 75% 55%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 270 30% 20%;
+    --input: 270 30% 20%;
+    --ring: 320 95% 70%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+    background-image: var(--gradient-soft);
+    background-attachment: fixed;
+  }
+
+  h1, h2, h3, h4, h5 {
+    @apply font-display;
+  }
+}
+
+@layer utilities {
+  .text-gradient-brand {
+    background: var(--gradient-brand);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .bg-gradient-hero { background: var(--gradient-hero); }
+  .bg-gradient-brand { background: var(--gradient-brand); }
+  .bg-gradient-sun { background: var(--gradient-sun); }
+  .bg-gradient-sky { background: var(--gradient-sky); }
+  .shadow-pop { box-shadow: var(--shadow-pop); }
+  .shadow-glow { box-shadow: var(--shadow-glow); }
+  .shadow-card { box-shadow: var(--shadow-card); }
+
+  @keyframes float-y {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+  }
+  .animate-float { animation: float-y 5s ease-in-out infinite; }
+
+  @keyframes pulse-glow {
+    0%, 100% { box-shadow: 0 0 0 0 hsl(var(--primary) / 0.5); }
+    50% { box-shadow: 0 0 0 18px hsl(var(--primary) / 0); }
+  }
+  .animate-pulse-glow { animation: pulse-glow 2s ease-out infinite; }
+
+  @keyframes pop-in {
+    0% { transform: scale(0.6); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+  .animate-pop-in { animation: pop-in 0.5s var(--ease-bounce); }
+}
